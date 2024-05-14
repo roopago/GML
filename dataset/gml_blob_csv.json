@@ -1,0 +1,97 @@
+{
+	"name": "gml_blob_csv",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "GML_Blob_Storage",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"filename": {
+				"type": "string"
+			}
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": {
+					"value": "@concat(dataset().filename,'.csv')",
+					"type": "Expression"
+				},
+				"folderPath": "Downloadedfile",
+				"container": "roopatpgcontainer"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "Account ID",
+				"type": "String"
+			},
+			{
+				"name": "Account Name",
+				"type": "String"
+			},
+			{
+				"name": "Description",
+				"type": "String"
+			},
+			{
+				"name": "Active",
+				"type": "String"
+			},
+			{
+				"name": "Account Type",
+				"type": "String"
+			},
+			{
+				"name": "Currency Code",
+				"type": "String"
+			},
+			{
+				"name": "Created Time",
+				"type": "String"
+			},
+			{
+				"name": "Last Modified Time",
+				"type": "String"
+			},
+			{
+				"name": "Account Base Type",
+				"type": "String"
+			},
+			{
+				"name": "BS Base Type",
+				"type": "String"
+			},
+			{
+				"name": "BS Account Type",
+				"type": "String"
+			},
+			{
+				"name": "BS Account Name",
+				"type": "String"
+			},
+			{
+				"name": "BS Total",
+				"type": "String"
+			},
+			{
+				"name": "Cash Flow Type",
+				"type": "String"
+			},
+			{
+				"name": "Parent Account ID",
+				"type": "String"
+			},
+			{
+				"name": "Account Code",
+				"type": "String"
+			}
+		]
+	}
+}
