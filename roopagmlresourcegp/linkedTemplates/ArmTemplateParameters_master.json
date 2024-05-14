@@ -8,6 +8,9 @@
 		"GML_Blob_Storage_connectionString": {
 			"value": ""
 		},
+		"ROOPA_gmlsqlconnection_connectionString": {
+			"value": "Integrated Security=False;Encrypt=True;Connection Timeout=30;Data Source=roopatpgsqlserver.database.windows.net;Initial Catalog=roopaprogressdb"
+		},
 		"containerUri": {
 			"value": ""
 		},

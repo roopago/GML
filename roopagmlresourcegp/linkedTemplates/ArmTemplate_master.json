@@ -11,6 +11,11 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'GML_Blob_Storage'"
 		},
+		"ROOPA_gmlsqlconnection_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'ROOPA_gmlsqlconnection'",
+			"defaultValue": "Integrated Security=False;Encrypt=True;Connection Timeout=30;Data Source=roopatpgsqlserver.database.windows.net;Initial Catalog=roopaprogressdb"
+		},
 		"containerUri": {
 			"type": "string",
 			"metadata": "URI to storage account containing linked ARM templates"
@@ -40,6 +45,9 @@
 					},
 					"GML_Blob_Storage_connectionString": {
 						"value": "[parameters('GML_Blob_Storage_connectionString')]"
+					},
+					"ROOPA_gmlsqlconnection_connectionString": {
+						"value": "[parameters('ROOPA_gmlsqlconnection_connectionString')]"
 					}
 				}
 			},
