@@ -1,0 +1,9 @@
+{
+	"name": "roopagmlresourcegp",
+	"location": "uksouth",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "7033f8e4-068f-4aeb-8e4e-42559ec8a4fb",
+		"tenantId": "ce9d0c67-4e6d-43aa-95ab-ec9460c5b570"
+	}
+}
