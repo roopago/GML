@@ -85,7 +85,7 @@
 		"parameters": {
 			"fname": {
 				"type": "array",
-				"defaultValue": "output1,output2,output3"
+				"defaultValue": "[output1,output2,output3]"
 			}
 		},
 		"annotations": []
