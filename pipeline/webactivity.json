@@ -16,7 +16,7 @@
 				"userProperties": [],
 				"typeProperties": {
 					"method": "GET",
-					"url": "\thttps://dummy.restapiexample.com/api/v1/employees"
+					"url": "https://dummy.restapiexample.com/api/v1/employees"
 				}
 			}
 		],
