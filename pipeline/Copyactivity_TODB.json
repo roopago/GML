@@ -28,7 +28,7 @@
 					},
 					"sink": {
 						"type": "AzureSqlSink",
-						"preCopyScript": "TRUNCATE TABLE dbo.Customers;\n",
+						"preCopyScript": "TRUNCATE TABLE dbo.Customer;\n",
 						"writeBehavior": "insert",
 						"sqlWriterUseTableLock": false,
 						"disableMetricsCollection": false
