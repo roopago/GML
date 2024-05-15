@@ -1,5 +1,5 @@
 {
-	"name": "pipeline2",
+	"name": "Copyactivity",
 	"properties": {
 		"activities": [
 			{
@@ -35,11 +35,8 @@
 				},
 				"inputs": [
 					{
-						"referenceName": "Inputdataset",
-						"type": "DatasetReference",
-						"parameters": {
-							"input_filename": "Customer.txt"
-						}
+						"referenceName": "test_inputdataset",
+						"type": "DatasetReference"
 					}
 				],
 				"outputs": [
