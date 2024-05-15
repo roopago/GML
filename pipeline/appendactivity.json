@@ -1,0 +1,36 @@
+{
+	"name": "appendactivity",
+	"properties": {
+		"activities": [
+			{
+				"name": "Append listoffiles",
+				"type": "AppendVariable",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "listoffiles",
+					"value": {
+						"value": "@pipeline().parameters.Filename",
+						"type": "Expression"
+					}
+				}
+			}
+		],
+		"parameters": {
+			"Filename": {
+				"type": "string",
+				"defaultValue": "Indiasales.txt"
+			}
+		},
+		"variables": {
+			"listoffiles": {
+				"type": "Array",
+				"defaultValue": [
+					"USsales",
+					"UKsales"
+				]
+			}
+		},
+		"annotations": []
+	}
+}
