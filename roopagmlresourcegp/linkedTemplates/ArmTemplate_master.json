@@ -11,10 +11,18 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'GML_Blob_Storage'"
 		},
+		"Inputblobstorage_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'Inputblobstorage'"
+		},
 		"ROOPA_gmlsqlconnection_connectionString": {
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'ROOPA_gmlsqlconnection'",
 			"defaultValue": "Integrated Security=False;Encrypt=True;Connection Timeout=30;Data Source=roopatpgsqlserver.database.windows.net;Initial Catalog=roopaprogressdb"
+		},
+		"Test_blob_storage_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'Test_blob_storage'"
 		},
 		"containerUri": {
 			"type": "string",
@@ -46,8 +54,14 @@
 					"GML_Blob_Storage_connectionString": {
 						"value": "[parameters('GML_Blob_Storage_connectionString')]"
 					},
+					"Inputblobstorage_connectionString": {
+						"value": "[parameters('Inputblobstorage_connectionString')]"
+					},
 					"ROOPA_gmlsqlconnection_connectionString": {
 						"value": "[parameters('ROOPA_gmlsqlconnection_connectionString')]"
+					},
+					"Test_blob_storage_connectionString": {
+						"value": "[parameters('Test_blob_storage_connectionString')]"
 					}
 				}
 			},
