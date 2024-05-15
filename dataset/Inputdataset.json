@@ -1,0 +1,27 @@
+{
+	"name": "Inputdataset",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "Inputblobstorage",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"input_filename": {
+				"type": "string"
+			}
+		},
+		"annotations": [],
+		"type": "Binary",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": {
+					"value": "@dataset().input_filename",
+					"type": "Expression"
+				},
+				"folderPath": "Input",
+				"container": "roopatpgcontainer"
+			}
+		}
+	}
+}

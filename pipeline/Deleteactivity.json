@@ -1,0 +1,48 @@
+{
+	"name": "Deleteactivity",
+	"properties": {
+		"activities": [
+			{
+				"name": "Delete1",
+				"type": "Delete",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [
+					{
+						"name": "delete activity",
+						"value": "delete outputdataset .txt"
+					}
+				],
+				"typeProperties": {
+					"dataset": {
+						"referenceName": "outputdataset",
+						"type": "DatasetReference",
+						"parameters": {
+							"output_filename": "copy_1.txt"
+						}
+					},
+					"logStorageSettings": {
+						"linkedServiceName": {
+							"referenceName": "Inputblobstorage",
+							"type": "LinkedServiceReference"
+						},
+						"path": "roopatpgcontainer"
+					},
+					"enableLogging": true,
+					"storeSettings": {
+						"type": "AzureBlobStorageReadSettings",
+						"recursive": true,
+						"enablePartitionDiscovery": false
+					}
+				}
+			}
+		],
+		"annotations": []
+	}
+}

@@ -1,0 +1,43 @@
+{
+	"name": "Setactivity",
+	"properties": {
+		"activities": [
+			{
+				"name": "Set value for file type",
+				"type": "SetVariable",
+				"dependsOn": [],
+				"policy": {
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "Filetype",
+					"value": {
+						"value": "@replace(pipeline().parameters.filename,'sales','')",
+						"type": "Expression"
+					}
+				}
+			}
+		],
+		"parameters": {
+			"filename": {
+				"type": "string",
+				"defaultValue": "Dailysales"
+			}
+		},
+		"variables": {
+			"Filetype": {
+				"type": "String"
+			},
+			"listoffiles": {
+				"type": "Array",
+				"defaultValue": [
+					"abc",
+					"xyz"
+				]
+			}
+		},
+		"annotations": []
+	}
+}
