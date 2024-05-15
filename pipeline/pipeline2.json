@@ -39,7 +39,7 @@
 						"referenceName": "gml_blob_csv",
 						"type": "DatasetReference",
 						"parameters": {
-							"filename": "insertnumber"
+							"filename": "Customer.txt"
 						}
 					}
 				],
