@@ -2,7 +2,7 @@
 	"name": "Inputdataset",
 	"properties": {
 		"linkedServiceName": {
-			"referenceName": "GML_Blob_Storage",
+			"referenceName": "Test_blob_storage",
 			"type": "LinkedServiceReference"
 		},
 		"parameters": {
