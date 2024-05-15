@@ -83,7 +83,10 @@
 							"inputs": [
 								{
 									"referenceName": "Inputdataset",
-									"type": "DatasetReference"
+									"type": "DatasetReference",
+									"parameters": {
+										"input_filename": "customer.txt"
+									}
 								}
 							],
 							"outputs": [
