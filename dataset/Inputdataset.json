@@ -1,0 +1,23 @@
+{
+	"name": "Inputdataset",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "GML_Blob_Storage",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"input_filename": {
+				"type": "string"
+			}
+		},
+		"annotations": [],
+		"type": "Binary",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"folderPath": "Input",
+				"container": "roopatpgcontainer"
+			}
+		}
+	}
+}
