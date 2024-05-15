@@ -16,14 +16,13 @@
 				"userProperties": [],
 				"typeProperties": {
 					"source": {
-						"type": "DelimitedTextSource",
+						"type": "BinarySource",
 						"storeSettings": {
 							"type": "AzureBlobStorageReadSettings",
-							"recursive": true,
-							"enablePartitionDiscovery": false
+							"recursive": true
 						},
 						"formatSettings": {
-							"type": "DelimitedTextReadSettings"
+							"type": "BinaryReadSettings"
 						}
 					},
 					"sink": {
@@ -36,10 +35,10 @@
 				},
 				"inputs": [
 					{
-						"referenceName": "gml_blob_csv",
+						"referenceName": "Inputdataset",
 						"type": "DatasetReference",
 						"parameters": {
-							"filename": "Customer.txt"
+							"input_filename": "Customer.txt"
 						}
 					}
 				],
