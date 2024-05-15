@@ -6,5 +6,6 @@
 		"typeProperties": {
 			"connectionString": "Integrated Security=False;Encrypt=True;Connection Timeout=30;Data Source=roopatpgsqlserver.database.windows.net;Initial Catalog=roopaprogressdb"
 		}
-	}
+	},
+	"type": "Microsoft.DataFactory/factories/linkedservices"
 }
