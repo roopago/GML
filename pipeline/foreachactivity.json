@@ -92,11 +92,6 @@
 				]
 			}
 		},
-		"variables": {
-			"fname": {
-				"type": "Array"
-			}
-		},
 		"annotations": []
 	}
 }
