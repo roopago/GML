@@ -9,7 +9,7 @@
 				"userProperties": [],
 				"typeProperties": {
 					"items": {
-						"value": "@pipeline().parameters.fname",
+						"value": "@pipeline().parameters.foldername",
 						"type": "Expression"
 					},
 					"isSequential": true,
@@ -83,9 +83,18 @@
 			}
 		],
 		"parameters": {
-			"fname": {
+			"foldername": {
 				"type": "array",
-				"defaultValue": "[output1,output2,output3]"
+				"defaultValue": [
+					"output1",
+					"output2",
+					"output3"
+				]
+			}
+		},
+		"variables": {
+			"fname": {
+				"type": "Array"
 			}
 		},
 		"annotations": []
