@@ -1,0 +1,59 @@
+{
+	"name": "pipeline2",
+	"properties": {
+		"activities": [
+			{
+				"name": "Copy data1",
+				"type": "Copy",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "DelimitedTextSource",
+						"storeSettings": {
+							"type": "AzureBlobStorageReadSettings",
+							"recursive": true,
+							"enablePartitionDiscovery": false
+						},
+						"formatSettings": {
+							"type": "DelimitedTextReadSettings"
+						}
+					},
+					"sink": {
+						"type": "BinarySink",
+						"storeSettings": {
+							"type": "AzureBlobStorageWriteSettings"
+						}
+					},
+					"enableStaging": false
+				},
+				"inputs": [
+					{
+						"referenceName": "gml_blob_csv",
+						"type": "DatasetReference",
+						"parameters": {
+							"filename": "insertnumber"
+						}
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "outputdataset",
+						"type": "DatasetReference",
+						"parameters": {
+							"output_filename": "copy_1.txt"
+						}
+					}
+				]
+			}
+		],
+		"annotations": []
+	}
+}
