@@ -1,5 +1,5 @@
 {
-	"name": "webactivity_GET",
+	"name": "webactivity_POST",
 	"properties": {
 		"activities": [
 			{
@@ -15,8 +15,16 @@
 				},
 				"userProperties": [],
 				"typeProperties": {
-					"method": "GET",
-					"url": "https://dummy.restapiexample.com/api/v1/employees"
+					"method": "POST",
+					"headers": {
+						"contenttype": "application\\json"
+					},
+					"url": "https://dummy.restapiexample.com/api/v1/create",
+					"body": {
+						"name": "acedu",
+						"salary": "999",
+						"age": "23"
+					}
 				}
 			}
 		],
