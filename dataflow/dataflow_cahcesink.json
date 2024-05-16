@@ -70,7 +70,7 @@
 				"empblob keyGenerate(output(EMPID as long),",
 				"     startAt: 1L,",
 				"     stepValue: 1L) ~> surrogateKey1",
-				"surrogateKey1 derive(EMPID = EMPLOYEE_ID + cachedmaxempid#outputs()[1].maxid) ~> derivedColumn1",
+				"surrogateKey1 derive(EMPID = EMPID + cachedmaxempid#outputs()[1].maxid) ~> derivedColumn1",
 				"derivedColumn1 select(mapColumn(",
 				"          FIRST_NAME,",
 				"          empid = EMPID,",
