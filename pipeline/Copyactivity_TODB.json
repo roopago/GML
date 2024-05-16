@@ -109,6 +109,8 @@
 				]
 			}
 		],
-		"annotations": []
+		"annotations": [
+			"copy"
+		]
 	}
 }
