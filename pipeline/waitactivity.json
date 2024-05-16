@@ -1,0 +1,26 @@
+{
+	"name": "waitactivity",
+	"properties": {
+		"activities": [
+			{
+				"name": "Wait1",
+				"type": "Wait",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"waitTimeInSeconds": {
+						"value": "@pipeline().parameters.waitsec",
+						"type": "Expression"
+					}
+				}
+			}
+		],
+		"parameters": {
+			"waitsec": {
+				"type": "int",
+				"defaultValue": 10
+			}
+		},
+		"annotations": []
+	}
+}
