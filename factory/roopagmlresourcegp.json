@@ -1,5 +1,13 @@
 {
 	"name": "roopagmlresourcegp",
+	"properties": {
+		"globalParameters": {
+			"rootpath": {
+				"type": "string",
+				"value": "tt"
+			}
+		}
+	},
 	"location": "uksouth",
 	"identity": {
 		"type": "SystemAssigned",
