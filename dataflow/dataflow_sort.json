@@ -1,5 +1,5 @@
 {
-	"name": "dataflow_exists",
+	"name": "dataflow_sort",
 	"properties": {
 		"type": "MappingDataFlow",
 		"typeProperties": {
@@ -10,19 +10,20 @@
 						"type": "DatasetReference"
 					},
 					"name": "emp"
-				},
-				{
-					"dataset": {
-						"referenceName": "Deptdataset",
-						"type": "DatasetReference"
-					},
-					"name": "dept"
 				}
 			],
-			"sinks": [],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "Outputdataset_noparam",
+						"type": "DatasetReference"
+					},
+					"name": "sink1"
+				}
+			],
 			"transformations": [
 				{
-					"name": "exists1"
+					"name": "sort1"
 				}
 			],
 			"scriptLines": [
@@ -42,18 +43,13 @@
 				"     allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     ignoreNoFilesFound: false) ~> emp",
-				"source(output(",
-				"          DEPARTMENT_ID as string,",
-				"          DEPARTMENT_NAME as string,",
-				"          MANAGER_ID as string,",
-				"          LOCATION_ID as string",
-				"     ),",
-				"     allowSchemaDrift: true,",
+				"emp sort(desc(FIRST_NAME, true)) ~> sort1",
+				"sort1 sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
-				"     ignoreNoFilesFound: false) ~> dept",
-				"dept, emp exists(dept@DEPARTMENT_ID == emp@DEPARTMENT_ID,",
-				"     negate:true,",
-				"     broadcast: 'auto')~> exists1"
+				"     partitionFileNames:['sort.csv'],",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true,",
+				"     partitionBy('hash', 1)) ~> sink1"
 			]
 		}
 	}

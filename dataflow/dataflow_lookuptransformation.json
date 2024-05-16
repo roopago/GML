@@ -1,31 +1,40 @@
 {
-	"name": "dataflow_exists",
+	"name": "dataflow_lookuptransformation",
 	"properties": {
 		"type": "MappingDataFlow",
 		"typeProperties": {
 			"sources": [
 				{
 					"dataset": {
-						"referenceName": "Empdataset",
-						"type": "DatasetReference"
-					},
-					"name": "emp"
-				},
-				{
-					"dataset": {
 						"referenceName": "Deptdataset",
 						"type": "DatasetReference"
 					},
 					"name": "dept"
+				},
+				{
+					"dataset": {
+						"referenceName": "Empdataset",
+						"type": "DatasetReference"
+					},
+					"name": "emp"
 				}
 			],
 			"sinks": [],
 			"transformations": [
 				{
-					"name": "exists1"
+					"name": "lookup1"
 				}
 			],
 			"scriptLines": [
+				"source(output(",
+				"          DEPARTMENT_ID as string,",
+				"          DEPARTMENT_NAME as string,",
+				"          MANAGER_ID as string,",
+				"          LOCATION_ID as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false) ~> dept",
 				"source(output(",
 				"          EMPLOYEE_ID as string,",
 				"          FIRST_NAME as string,",
@@ -42,18 +51,10 @@
 				"     allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     ignoreNoFilesFound: false) ~> emp",
-				"source(output(",
-				"          DEPARTMENT_ID as string,",
-				"          DEPARTMENT_NAME as string,",
-				"          MANAGER_ID as string,",
-				"          LOCATION_ID as string",
-				"     ),",
-				"     allowSchemaDrift: true,",
-				"     validateSchema: false,",
-				"     ignoreNoFilesFound: false) ~> dept",
-				"dept, emp exists(dept@DEPARTMENT_ID == emp@DEPARTMENT_ID,",
-				"     negate:true,",
-				"     broadcast: 'auto')~> exists1"
+				"dept, emp lookup(dept@DEPARTMENT_ID == emp@DEPARTMENT_ID,",
+				"     multiple: false,",
+				"     pickup: 'any',",
+				"     broadcast: 'auto')~> lookup1"
 			]
 		}
 	}

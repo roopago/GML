@@ -1,5 +1,5 @@
 {
-	"name": "dataflow_exists",
+	"name": "dataflow_branch",
 	"properties": {
 		"type": "MappingDataFlow",
 		"typeProperties": {
@@ -19,10 +19,28 @@
 					"name": "dept"
 				}
 			],
-			"sinks": [],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "Outputdataset_noparam",
+						"type": "DatasetReference"
+					},
+					"name": "sink1"
+				},
+				{
+					"dataset": {
+						"referenceName": "Outputdataset_noparam",
+						"type": "DatasetReference"
+					},
+					"name": "sink2"
+				}
+			],
 			"transformations": [
 				{
-					"name": "exists1"
+					"name": "aggregate1"
+				},
+				{
+					"name": "join1"
 				}
 			],
 			"scriptLines": [
@@ -51,9 +69,25 @@
 				"     allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     ignoreNoFilesFound: false) ~> dept",
-				"dept, emp exists(dept@DEPARTMENT_ID == emp@DEPARTMENT_ID,",
-				"     negate:true,",
-				"     broadcast: 'auto')~> exists1"
+				"emp aggregate(groupBy(DEPARTMENT_ID),",
+				"     EMPLOYEE_ID = count(EMPLOYEE_ID)) ~> aggregate1",
+				"emp, dept join(emp@DEPARTMENT_ID == dept@DEPARTMENT_ID,",
+				"     joinType:'inner',",
+				"     matchType:'exact',",
+				"     ignoreSpaces: false,",
+				"     broadcast: 'auto')~> join1",
+				"aggregate1 sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     partitionFileNames:['test1.csv'],",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true,",
+				"     partitionBy('hash', 1)) ~> sink1",
+				"join1 sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     partitionFileNames:['test2.csv'],",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true,",
+				"     partitionBy('hash', 1)) ~> sink2"
 			]
 		}
 	}
