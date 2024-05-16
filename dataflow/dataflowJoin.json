@@ -1,5 +1,5 @@
 {
-	"name": "Join",
+	"name": "dataflowJoin",
 	"properties": {
 		"type": "MappingDataFlow",
 		"typeProperties": {
@@ -22,7 +22,7 @@
 			"sinks": [
 				{
 					"dataset": {
-						"referenceName": "output1dataset",
+						"referenceName": "Outputdataset_noparam",
 						"type": "DatasetReference"
 					},
 					"name": "Output"
@@ -66,12 +66,6 @@
 				"     broadcast: 'auto')~> join1",
 				"join1 sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
-				"     input(",
-				"          Name as string,",
-				"          Category as string,",
-				"          Status as string,",
-				"          Error as string",
-				"     ),",
 				"     skipDuplicateMapInputs: true,",
 				"     skipDuplicateMapOutputs: true) ~> Output"
 			]
