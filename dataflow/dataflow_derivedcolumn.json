@@ -1,0 +1,36 @@
+{
+	"name": "dataflow_derivedcolumn",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "Deptdataset",
+						"type": "DatasetReference"
+					},
+					"name": "source1"
+				}
+			],
+			"sinks": [],
+			"transformations": [
+				{
+					"name": "derivedColumn1"
+				}
+			],
+			"scriptLines": [
+				"source(output(",
+				"          DEPARTMENT_ID as string,",
+				"          DEPARTMENT_NAME as string,",
+				"          MANAGER_ID as string,",
+				"          LOCATION_ID as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false) ~> source1",
+				"source1 derive(new_DEPARTMENT_NAME = upper(DEPARTMENT_NAME),",
+				"          NEW_MANAGER_ID = iif(MANAGER_ID==' - ', 'unkown', MANAGER_ID)) ~> derivedColumn1"
+			]
+		}
+	}
+}

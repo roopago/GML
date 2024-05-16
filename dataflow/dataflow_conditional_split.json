@@ -1,0 +1,78 @@
+{
+	"name": "dataflow_conditional_split",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "Deptdataset",
+						"type": "DatasetReference"
+					},
+					"name": "source1",
+					"description": "Split based on dept"
+				}
+			],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "Outputdataset_noparam",
+						"type": "DatasetReference"
+					},
+					"name": "sink1"
+				},
+				{
+					"dataset": {
+						"referenceName": "Outputdataset_noparam",
+						"type": "DatasetReference"
+					},
+					"name": "sink2"
+				},
+				{
+					"dataset": {
+						"referenceName": "Outputdataset_noparam",
+						"type": "DatasetReference"
+					},
+					"name": "sink3"
+				}
+			],
+			"transformations": [
+				{
+					"name": "split1"
+				}
+			],
+			"scriptLines": [
+				"source(output(",
+				"          DEPARTMENT_ID as integer,",
+				"          DEPARTMENT_NAME as string,",
+				"          MANAGER_ID as string,",
+				"          LOCATION_ID as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false) ~> source1",
+				"source1 split(equals(DEPARTMENT_ID, 20),",
+				"     equals(DEPARTMENT_ID, 10),",
+				"     disjoint: false) ~> split1@(Deptmarketing, Deptadmin, Deptothers)",
+				"split1@Deptmarketing sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     partitionFileNames:['marketingdept.csv'],",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true,",
+				"     partitionBy('hash', 1)) ~> sink1",
+				"split1@Deptadmin sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     partitionFileNames:['admindept.csv'],",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true,",
+				"     partitionBy('hash', 1)) ~> sink2",
+				"split1@Deptothers sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     partitionFileNames:['allotherdept.csv'],",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true,",
+				"     partitionBy('hash', 1)) ~> sink3"
+			]
+		}
+	}
+}
