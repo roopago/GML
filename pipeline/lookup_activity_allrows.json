@@ -42,7 +42,7 @@
 				"userProperties": [],
 				"typeProperties": {
 					"items": {
-						"value": "@activity('Lookup1').output.item",
+						"value": "@activity('Lookup1').output.value",
 						"type": "Expression"
 					},
 					"isSequential": true,
@@ -104,7 +104,7 @@
 									"type": "DatasetReference",
 									"parameters": {
 										"folder": {
-											"value": "@item()",
+											"value": "@item().Name",
 											"type": "Expression"
 										}
 									}
