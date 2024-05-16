@@ -1,0 +1,61 @@
+{
+	"name": "dataflow_pivot",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "pivot_emp_data",
+						"type": "DatasetReference"
+					},
+					"name": "emp"
+				}
+			],
+			"sinks": [],
+			"transformations": [
+				{
+					"name": "pivot1"
+				}
+			],
+			"scriptLines": [
+				"source(output(",
+				"          EmpID as string,",
+				"          FirstName as string,",
+				"          LastName as string,",
+				"          StartDate as string,",
+				"          ExitDate as string,",
+				"          Title as string,",
+				"          Supervisor as string,",
+				"          ADEmail as string,",
+				"          BusinessUnit as string,",
+				"          EmployeeStatus as string,",
+				"          EmployeeType as string,",
+				"          PayZone as string,",
+				"          EmployeeClassificationType as string,",
+				"          TerminationType as string,",
+				"          TerminationDescription as string,",
+				"          DepartmentType as string,",
+				"          Division as string,",
+				"          DOB as string,",
+				"          State as string,",
+				"          JobFunctionDescription as string,",
+				"          GenderCode as string,",
+				"          LocationCode as string,",
+				"          RaceDesc as string,",
+				"          MaritalDesc as string,",
+				"          {Performance Score} as string,",
+				"          {Current Employee Rating} as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false) ~> emp",
+				"emp pivot(groupBy(DepartmentType),",
+				"     pivotBy(GenderCode),",
+				"     {} = count(EmpID),",
+				"     columnNaming: '$N$V',",
+				"     lateral: true) ~> pivot1"
+			]
+		}
+	}
+}
