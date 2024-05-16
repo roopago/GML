@@ -12,7 +12,15 @@
 					"name": "source1"
 				}
 			],
-			"sinks": [],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "Outputdataset_noparam",
+						"type": "DatasetReference"
+					},
+					"name": "sink1"
+				}
+			],
 			"transformations": [
 				{
 					"name": "derivedColumn1"
@@ -29,7 +37,11 @@
 				"     validateSchema: false,",
 				"     ignoreNoFilesFound: false) ~> source1",
 				"source1 derive(new_DEPARTMENT_NAME = upper(DEPARTMENT_NAME),",
-				"          NEW_MANAGER_ID = iif(MANAGER_ID==' - ', 'unkown', MANAGER_ID)) ~> derivedColumn1"
+				"          NEW_MANAGER_ID = iif(MANAGER_ID==' - ', 'unkown', MANAGER_ID)) ~> derivedColumn1",
+				"derivedColumn1 sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> sink1"
 			]
 		}
 	}
