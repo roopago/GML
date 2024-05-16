@@ -100,11 +100,6 @@
 				]
 			}
 		],
-		"parameters": {
-			"foldername": {
-				"type": "string"
-			}
-		},
 		"annotations": []
 	}
 }
