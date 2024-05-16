@@ -92,7 +92,7 @@
 						"type": "DatasetReference",
 						"parameters": {
 							"folder": {
-								"value": "@activity('Lookup1').output.firstRow.name",
+								"value": "@activity('Lookup1').output.firstRow.Name",
 								"type": "Expression"
 							}
 						}
