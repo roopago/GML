@@ -29,7 +29,7 @@
 				"     validateSchema: false,",
 				"     ignoreNoFilesFound: false) ~> source1",
 				"source1 derive(new_DEPARTMENT_NAME = upper(DEPARTMENT_NAME),",
-				"          NEW_MANAGER_ID = iif(isNull(MANAGER_ID), '*', MANAGER_ID)) ~> derivedColumn1"
+				"          NEW_MANAGER_ID = iif(MANAGER_ID==' - ', 'unkown', MANAGER_ID)) ~> derivedColumn1"
 			]
 		}
 	}
