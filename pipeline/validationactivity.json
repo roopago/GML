@@ -15,7 +15,7 @@
 							"input_filename": "tt"
 						}
 					},
-					"timeout": "0.12:00:00",
+					"timeout": "0.00:00:20",
 					"sleep": 10
 				}
 			}
