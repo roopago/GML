@@ -59,7 +59,7 @@
 				"     allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     ignoreNoFilesFound: false) ~> Dept",
-				"Emp, Dept join(ERROR_FUNCTION('') == ERROR_FUNCTION(''),",
+				"Emp, Dept join(Emp@DEPARTMENT_ID == Dept@DEPARTMENT_ID,",
 				"     joinType:'inner',",
 				"     matchType:'exact',",
 				"     ignoreSpaces: false,",
