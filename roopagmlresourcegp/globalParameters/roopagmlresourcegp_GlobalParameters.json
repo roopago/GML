@@ -1,1 +1,6 @@
-{}
+{
+	"rootpath": {
+		"type": "string",
+		"value": "tt"
+	}
+}
