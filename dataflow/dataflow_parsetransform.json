@@ -56,6 +56,14 @@
 				"     partitionFileNames:['parse.csv'],",
 				"     skipDuplicateMapInputs: true,",
 				"     skipDuplicateMapOutputs: true,",
+				"     mapColumn(",
+				"          empid,",
+				"          ename,",
+				"          skill1 = skills.skill1,",
+				"          skill2 = skills.skill2,",
+				"          city = address.city,",
+				"          country = address.country",
+				"     ),",
 				"     partitionBy('hash', 1)) ~> sink1"
 			]
 		}
