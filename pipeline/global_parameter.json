@@ -1,5 +1,5 @@
 {
-	"name": "Copyactivity",
+	"name": "global_parameter",
 	"properties": {
 		"activities": [
 			{
@@ -16,45 +16,42 @@
 				"userProperties": [],
 				"typeProperties": {
 					"source": {
-						"type": "BinarySource",
+						"type": "DelimitedTextSource",
 						"storeSettings": {
 							"type": "AzureBlobStorageReadSettings",
-							"recursive": true
+							"recursive": true,
+							"enablePartitionDiscovery": false
 						},
 						"formatSettings": {
-							"type": "BinaryReadSettings"
-						}
-					},
-					"sink": {
-						"type": "BinarySink",
-						"storeSettings": {
-							"type": "AzureBlobStorageWriteSettings"
+							"type": "DelimitedTextReadSettings"
 						}
 					},
 					"enableStaging": false
 				},
 				"inputs": [
 					{
-						"referenceName": "Inputdataset",
+						"referenceName": "DelimitedText1",
 						"type": "DatasetReference",
 						"parameters": {
-							"input_filename": "input"
-						}
-					}
-				],
-				"outputs": [
-					{
-						"referenceName": "outputdataset",
-						"type": "DatasetReference",
-						"parameters": {
-							"output_filename": "copy_1.txt"
+							"root": {
+								"value": "@pipeline().globalParameters.rootpath",
+								"type": "Expression"
+							}
 						}
 					}
 				]
 			}
 		],
-		"annotations": [
-			"Copy"
-		]
+		"parameters": {
+			"rootpath": {
+				"type": "string",
+				"defaultValue": "tt"
+			},
+			"filename": {
+				"type": "string",
+				"defaultValue": "gg"
+			}
+		},
+		"annotations": []
 	}
 }
