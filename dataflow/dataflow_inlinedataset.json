@@ -1,0 +1,51 @@
+{
+	"name": "dataflow_inlinedataset",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"linkedService": {
+						"referenceName": "GML_Blob_Storage",
+						"type": "LinkedServiceReference"
+					},
+					"name": "Inlineemp"
+				}
+			],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "Outputdataset_noparam",
+						"type": "DatasetReference"
+					},
+					"name": "sink1"
+				}
+			],
+			"transformations": [],
+			"scriptLines": [
+				"source(output(",
+				"          Name as string,",
+				"          { ID} as short,",
+				"          LOC as string,",
+				"          SAL as integer",
+				"     ),",
+				"     useSchema: false,",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false,",
+				"     format: 'delimited',",
+				"     container: 'roopatpgcontainer',",
+				"     folderPath: 'Input',",
+				"     fileName: 'Customer.txt',",
+				"     columnDelimiter: ',',",
+				"     escapeChar: '\\\\',",
+				"     quoteChar: '\\\"',",
+				"     columnNamesAsHeader: true) ~> Inlineemp",
+				"Inlineemp sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> sink1"
+			]
+		}
+	}
+}
