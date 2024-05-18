@@ -10,6 +10,7 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobStorageLocation",
+				"fileName": "rest.csv",
 				"folderPath": "output",
 				"container": "roopatpgcontainer"
 			},
