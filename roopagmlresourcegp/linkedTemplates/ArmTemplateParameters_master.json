@@ -17,6 +17,12 @@
 		"Test_blob_storage_connectionString": {
 			"value": ""
 		},
+		"RestService1_properties_typeProperties_url": {
+			"value": "https://pokeapi.co/api/v2/pokemon"
+		},
+		"RestService2_properties_typeProperties_url": {
+			"value": "https://pokeapi.co/api/v2/pokemon?offset={offset}&limit=20"
+		},
 		"containerUri": {
 			"value": ""
 		},
