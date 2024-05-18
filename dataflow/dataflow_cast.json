@@ -19,13 +19,6 @@
 						"type": "DatasetReference"
 					},
 					"name": "sink1"
-				},
-				{
-					"dataset": {
-						"referenceName": "Outputdataset_noparam",
-						"type": "DatasetReference"
-					},
-					"name": "sink2"
 				}
 			],
 			"transformations": [
@@ -59,15 +52,11 @@
 				"     ),",
 				"     errors: true) ~> cast1",
 				"cast1 split(isError(),",
-				"     disjoint: false) ~> split1@(haserror, no error)",
+				"     disjoint: false) ~> split1@(haserror, no)",
 				"split1@haserror sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     skipDuplicateMapInputs: true,",
-				"     skipDuplicateMapOutputs: true) ~> sink1",
-				"split1@no error sink(allowSchemaDrift: true,",
-				"     validateSchema: false,",
-				"     skipDuplicateMapInputs: true,",
-				"     skipDuplicateMapOutputs: true) ~> sink2"
+				"     skipDuplicateMapOutputs: true) ~> sink1"
 			]
 		}
 	}
