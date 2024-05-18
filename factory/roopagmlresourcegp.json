@@ -6,6 +6,9 @@
 				"type": "string",
 				"value": "tt"
 			}
+		},
+		"globalConfigurations": {
+			"PipelineBillingEnabled": "false"
 		}
 	},
 	"location": "uksouth",

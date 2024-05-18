@@ -1,0 +1,26 @@
+{
+	"name": "AzureSqlTable3_education",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ROOPA_gmlsqlconnection",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "id",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "name",
+				"type": "varchar"
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "education"
+		}
+	}
+}
