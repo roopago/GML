@@ -1,0 +1,7 @@
+{
+	"name": "AzureBlobStorage_managednet",
+	"properties": {
+		"privateLinkResourceId": "/subscriptions/87a135f8-dd0c-474b-bc17-189f2b1fee86/resourceGroups/ROOPA_GML/providers/Microsoft.Storage/storageAccounts/roopatpgstorageaccount",
+		"groupId": "blob"
+	}
+}
