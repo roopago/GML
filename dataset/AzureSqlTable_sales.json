@@ -1,0 +1,34 @@
+{
+	"name": "AzureSqlTable_sales",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ROOPA_gmlsqlconnection",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "salesdate",
+				"type": "date"
+			},
+			{
+				"name": "item",
+				"type": "varchar"
+			},
+			{
+				"name": "country",
+				"type": "varchar"
+			},
+			{
+				"name": "quantity",
+				"type": "int",
+				"precision": 10
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "sales"
+		}
+	}
+}

@@ -1,0 +1,93 @@
+{
+	"name": "handleerror",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "handleerror_dataset",
+						"type": "DatasetReference"
+					},
+					"name": "source1"
+				}
+			],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "AzureSqlTable_sales_baddata",
+						"type": "DatasetReference"
+					},
+					"name": "sink1"
+				},
+				{
+					"dataset": {
+						"referenceName": "AzureSqlTable_sales",
+						"type": "DatasetReference"
+					},
+					"name": "sink2"
+				}
+			],
+			"transformations": [
+				{
+					"name": "assert1"
+				},
+				{
+					"name": "split1"
+				}
+			],
+			"scriptLines": [
+				"source(output(",
+				"          salesdate as string,",
+				"          item as string,",
+				"          country as string,",
+				"          quantity as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false) ~> source1",
+				"source1 assert(expectTrue(isDate(salesdate,'dd-mm-yyyy'), false, 'date check'),",
+				"     expectTrue(isInteger(quantity), false, 'quantity check')) ~> assert1",
+				"assert1 split(isError(),",
+				"     disjoint: false) ~> split1@(badrows, goodrows)",
+				"split1@badrows sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     input(",
+				"          salesdate as string,",
+				"          item as string,",
+				"          country as string,",
+				"          quantity as string",
+				"     ),",
+				"     deletable:false,",
+				"     insertable:true,",
+				"     updateable:false,",
+				"     upsertable:false,",
+				"     format: 'table',",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true,",
+				"     errorHandlingOption: 'stopOnFirstError') ~> sink1",
+				"split1@goodrows sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     input(",
+				"          salesdate as date,",
+				"          item as string,",
+				"          country as string,",
+				"          quantity as integer",
+				"     ),",
+				"     deletable:false,",
+				"     insertable:true,",
+				"     updateable:false,",
+				"     upsertable:false,",
+				"     format: 'table',",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true,",
+				"     errorHandlingOption: 'stopOnFirstError',",
+				"     mapColumn(",
+				"          salesdate,",
+				"          item,",
+				"          country",
+				"     )) ~> sink2"
+			]
+		}
+	}
+}

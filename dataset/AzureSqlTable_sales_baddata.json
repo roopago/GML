@@ -1,0 +1,33 @@
+{
+	"name": "AzureSqlTable_sales_baddata",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ROOPA_gmlsqlconnection",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "salesdate",
+				"type": "varchar"
+			},
+			{
+				"name": "item",
+				"type": "varchar"
+			},
+			{
+				"name": "country",
+				"type": "varchar"
+			},
+			{
+				"name": "quantity",
+				"type": "varchar"
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "sales_baddata"
+		}
+	}
+}
