@@ -15,10 +15,6 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobStorageLocation",
-				"folderPath": {
-					"value": "@dataset().outputfolder",
-					"type": "Expression"
-				},
 				"container": "roopatpgcontainer"
 			},
 			"columnDelimiter": ",",
