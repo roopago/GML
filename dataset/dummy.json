@@ -1,0 +1,28 @@
+{
+	"name": "dummy",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "GML_Blob_Storage",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": "Dummy.txt",
+				"folderPath": "Input",
+				"container": "roopatpgcontainer"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": false,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"type": "String"
+			}
+		]
+	}
+}

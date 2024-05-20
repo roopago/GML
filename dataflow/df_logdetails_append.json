@@ -1,0 +1,70 @@
+{
+	"name": "df_logdetails_append",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "dummy",
+						"type": "DatasetReference"
+					},
+					"name": "dummy"
+				},
+				{
+					"dataset": {
+						"referenceName": "log_file",
+						"type": "DatasetReference"
+					},
+					"name": "logappend"
+				}
+			],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "log_file",
+						"type": "DatasetReference"
+					},
+					"name": "sink1"
+				}
+			],
+			"transformations": [
+				{
+					"name": "derivedColumn1"
+				},
+				{
+					"name": "union1"
+				}
+			],
+			"scriptLines": [
+				"parameters{",
+				"     adfname as string,",
+				"     pipename as string,",
+				"     status as string,",
+				"     runid as string,",
+				"     triggername as string,",
+				"     logfilename as string",
+				"}",
+				"source(output(",
+				"          Column_1 as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false) ~> dummy",
+				"source(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false,",
+				"     wildcardPaths:[('roopatpgcontainer/log'+$logfilename)]) ~> logappend",
+				"dummy derive(adfname = $adfname,",
+				"          pipename = $pipename) ~> derivedColumn1",
+				"derivedColumn1, logappend union(byName: true)~> union1",
+				"union1 sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     partitionFileNames:[($logfilename)],",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true,",
+				"     partitionBy('hash', 1)) ~> sink1"
+			]
+		}
+	}
+}
