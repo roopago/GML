@@ -180,6 +180,20 @@
 											"value": "'@{variables('filename')}'",
 											"type": "Expression"
 										}
+									},
+									"datasetParameters": {
+										"logappend": {
+											"filename": {
+												"value": "@variables('filename')",
+												"type": "Expression"
+											}
+										},
+										"sink1": {
+											"filename": {
+												"value": "@variables('filename')",
+												"type": "Expression"
+											}
+										}
 									}
 								},
 								"compute": {
