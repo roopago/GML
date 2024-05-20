@@ -1,0 +1,41 @@
+{
+	"name": "customer_dataset",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "GML_Blob_Storage",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": "Customer.txt",
+				"folderPath": "Input",
+				"container": "roopatpgcontainer"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "Name",
+				"type": "String"
+			},
+			{
+				"name": " ID",
+				"type": "String"
+			},
+			{
+				"name": "LOC",
+				"type": "String"
+			},
+			{
+				"name": "SAL",
+				"type": "String"
+			}
+		]
+	}
+}
