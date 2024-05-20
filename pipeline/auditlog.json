@@ -154,7 +154,33 @@
 							"typeProperties": {
 								"dataflow": {
 									"referenceName": "df_logdetails_append",
-									"type": "DataFlowReference"
+									"type": "DataFlowReference",
+									"parameters": {
+										"adfname": {
+											"value": "'@{pipeline().DataFactory}'",
+											"type": "Expression"
+										},
+										"pipename": {
+											"value": "'@{pipeline().Pipeline}'",
+											"type": "Expression"
+										},
+										"status": {
+											"value": "'@{'success'}'",
+											"type": "Expression"
+										},
+										"runid": {
+											"value": "'@{pipeline().RunId}'",
+											"type": "Expression"
+										},
+										"triggername": {
+											"value": "'@{pipeline().TriggerId}'",
+											"type": "Expression"
+										},
+										"logfilename": {
+											"value": "'@{variables('filename')}'",
+											"type": "Expression"
+										}
+									}
 								},
 								"compute": {
 									"coreCount": 8,
