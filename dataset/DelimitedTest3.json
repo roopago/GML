@@ -1,0 +1,29 @@
+{
+	"name": "DelimitedTest3",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "GML_Blob_Storage",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": "test3.txt",
+				"folderPath": "Input",
+				"container": "roopatpgcontainer"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "emailed",
+				"type": "String"
+			}
+		]
+	}
+}
