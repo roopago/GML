@@ -24,6 +24,10 @@
 				"name": "quantity",
 				"type": "int",
 				"precision": 10
+			},
+			{
+				"name": "filename",
+				"type": "varchar"
 			}
 		],
 		"typeProperties": {
