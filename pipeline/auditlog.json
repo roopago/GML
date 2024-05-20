@@ -77,7 +77,93 @@
 					"expression": {
 						"value": "@activity('Get Metadata1').output.exists",
 						"type": "Expression"
-					}
+					},
+					"ifFalseActivities": [
+						{
+							"name": "df_logdetails",
+							"type": "ExecuteDataFlow",
+							"dependsOn": [],
+							"policy": {
+								"timeout": "0.12:00:00",
+								"retry": 0,
+								"retryIntervalInSeconds": 30,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"dataflow": {
+									"referenceName": "df_logdetails",
+									"type": "DataFlowReference",
+									"parameters": {
+										"adfname": {
+											"value": "'@{pipeline().DataFactory}'",
+											"type": "Expression"
+										},
+										"pipename": {
+											"value": "'@{pipeline().Pipeline}'",
+											"type": "Expression"
+										},
+										"status": {
+											"value": "'@{string('success')}'",
+											"type": "Expression"
+										},
+										"runid": {
+											"value": "'@{pipeline().RunId}'",
+											"type": "Expression"
+										},
+										"triggername": {
+											"value": "'@{pipeline().TriggerName}'",
+											"type": "Expression"
+										},
+										"logfilename": {
+											"value": "'@{variables('filename')}'",
+											"type": "Expression"
+										}
+									},
+									"datasetParameters": {
+										"sink1": {
+											"filename": {
+												"value": "@variables('filename')",
+												"type": "Expression"
+											}
+										}
+									}
+								},
+								"compute": {
+									"coreCount": 8,
+									"computeType": "General"
+								},
+								"traceLevel": "Fine"
+							}
+						}
+					],
+					"ifTrueActivities": [
+						{
+							"name": "df_logdetails_append",
+							"type": "ExecuteDataFlow",
+							"dependsOn": [],
+							"policy": {
+								"timeout": "0.12:00:00",
+								"retry": 0,
+								"retryIntervalInSeconds": 30,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"dataflow": {
+									"referenceName": "df_logdetails_append",
+									"type": "DataFlowReference"
+								},
+								"compute": {
+									"coreCount": 8,
+									"computeType": "General"
+								},
+								"traceLevel": "Fine"
+							}
+						}
+					]
 				}
 			}
 		],
