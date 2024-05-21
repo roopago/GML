@@ -7,6 +7,10 @@
 			"metadata": "Data Factory name",
 			"defaultValue": "roopagmlresourcegp"
 		},
+		"AzureBlobStorage_sales_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'AzureBlobStorage_sales'"
+		},
 		"GML_Blob_Storage_connectionString": {
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'GML_Blob_Storage'"
@@ -31,6 +35,14 @@
 		"RestService2_properties_typeProperties_url": {
 			"type": "string",
 			"defaultValue": "https://pokeapi.co/api/v2/pokemon?offset={offset}&limit=20"
+		},
+		"AzureBlobStorage_managednet_properties_privateLinkResourceId": {
+			"type": "string",
+			"defaultValue": "/subscriptions/87a135f8-dd0c-474b-bc17-189f2b1fee86/resourceGroups/ROOPA_GML/providers/Microsoft.Storage/storageAccounts/roopatpgstorageaccount"
+		},
+		"AzureBlobStorage_managednet_properties_groupId": {
+			"type": "string",
+			"defaultValue": "blob"
 		},
 		"containerUri": {
 			"type": "string",
@@ -58,6 +70,9 @@
 				"parameters": {
 					"factoryName": {
 						"value": "[parameters('factoryName')]"
+					},
+					"AzureBlobStorage_sales_connectionString": {
+						"value": "[parameters('AzureBlobStorage_sales_connectionString')]"
 					},
 					"GML_Blob_Storage_connectionString": {
 						"value": "[parameters('GML_Blob_Storage_connectionString')]"
@@ -134,6 +149,12 @@
 				"parameters": {
 					"factoryName": {
 						"value": "[parameters('factoryName')]"
+					},
+					"AzureBlobStorage_managednet_properties_privateLinkResourceId": {
+						"value": "[parameters('AzureBlobStorage_managednet_properties_privateLinkResourceId')]"
+					},
+					"AzureBlobStorage_managednet_properties_groupId": {
+						"value": "[parameters('AzureBlobStorage_managednet_properties_groupId')]"
 					}
 				}
 			},
@@ -159,6 +180,46 @@
 			},
 			"dependsOn": [
 				"[resourceId('Microsoft.Resources/deployments', 'roopagmlresourcegp_ArmTemplate_3')]"
+			]
+		},
+		{
+			"name": "roopagmlresourcegp_ArmTemplate_5",
+			"type": "Microsoft.Resources/deployments",
+			"apiVersion": "2018-02-01",
+			"properties": {
+				"mode": "incremental",
+				"templateLink": {
+					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_5.json', parameters('containerSasToken'))]",
+					"contentVersion": "1.0.0.0"
+				},
+				"parameters": {
+					"factoryName": {
+						"value": "[parameters('factoryName')]"
+					}
+				}
+			},
+			"dependsOn": [
+				"[resourceId('Microsoft.Resources/deployments', 'roopagmlresourcegp_ArmTemplate_4')]"
+			]
+		},
+		{
+			"name": "roopagmlresourcegp_ArmTemplate_6",
+			"type": "Microsoft.Resources/deployments",
+			"apiVersion": "2018-02-01",
+			"properties": {
+				"mode": "incremental",
+				"templateLink": {
+					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_6.json', parameters('containerSasToken'))]",
+					"contentVersion": "1.0.0.0"
+				},
+				"parameters": {
+					"factoryName": {
+						"value": "[parameters('factoryName')]"
+					}
+				}
+			},
+			"dependsOn": [
+				"[resourceId('Microsoft.Resources/deployments', 'roopagmlresourcegp_ArmTemplate_5')]"
 			]
 		}
 	]

@@ -5,6 +5,9 @@
 		"factoryName": {
 			"value": "roopagmlresourcegp"
 		},
+		"AzureBlobStorage_sales_connectionString": {
+			"value": ""
+		},
 		"GML_Blob_Storage_connectionString": {
 			"value": ""
 		},
@@ -22,6 +25,12 @@
 		},
 		"RestService2_properties_typeProperties_url": {
 			"value": "https://pokeapi.co/api/v2/pokemon?offset={offset}&limit=20"
+		},
+		"AzureBlobStorage_managednet_properties_privateLinkResourceId": {
+			"value": "/subscriptions/87a135f8-dd0c-474b-bc17-189f2b1fee86/resourceGroups/ROOPA_GML/providers/Microsoft.Storage/storageAccounts/roopatpgstorageaccount"
+		},
+		"AzureBlobStorage_managednet_properties_groupId": {
+			"value": "blob"
 		},
 		"containerUri": {
 			"value": ""
