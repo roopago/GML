@@ -1,12 +1,12 @@
 {
-	"name": "output2dataset",
+	"name": "log_file",
 	"properties": {
 		"linkedServiceName": {
-			"referenceName": "Inputblobstorage",
+			"referenceName": "GML_Blob_Storage",
 			"type": "LinkedServiceReference"
 		},
 		"parameters": {
-			"outputfolder": {
+			"filename": {
 				"type": "string"
 			}
 		},
@@ -15,6 +15,11 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobStorageLocation",
+				"fileName": {
+					"value": "@dataset().filename",
+					"type": "Expression"
+				},
+				"folderPath": "log",
 				"container": "roopatpgcontainer"
 			},
 			"columnDelimiter": ",",
@@ -22,23 +27,6 @@
 			"firstRowAsHeader": true,
 			"quoteChar": "\""
 		},
-		"schema": [
-			{
-				"name": "Name",
-				"type": "String"
-			},
-			{
-				"name": "Category",
-				"type": "String"
-			},
-			{
-				"name": "Status",
-				"type": "String"
-			},
-			{
-				"name": "Error",
-				"type": "String"
-			}
-		]
+		"schema": []
 	}
 }

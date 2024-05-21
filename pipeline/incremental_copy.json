@@ -1,5 +1,5 @@
 {
-	"name": "Copyactivity",
+	"name": "incremental_copy",
 	"properties": {
 		"activities": [
 			{
@@ -17,14 +17,20 @@
 				"typeProperties": {
 					"source": {
 						"type": "DelimitedTextSource",
-						"additionalColumns": [
-							{
-								"value": "$$FILENAME"
-							}
-						],
 						"storeSettings": {
 							"type": "AzureBlobStorageReadSettings",
-							"recursive": true
+							"recursive": true,
+							"modifiedDatetimeStart": {
+								"value": "@adddays(utcnow(),-2)",
+								"type": "Expression"
+							},
+							"modifiedDatetimeEnd": {
+								"value": "@utcnow()",
+								"type": "Expression"
+							},
+							"wildcardFolderPath": "input",
+							"wildcardFileName": "*.csv",
+							"enablePartitionDiscovery": false
 						},
 						"formatSettings": {
 							"type": "DelimitedTextReadSettings"
@@ -53,24 +59,21 @@
 				},
 				"inputs": [
 					{
-						"referenceName": "DelimitedText1",
-						"type": "DatasetReference",
-						"parameters": {
-							"root": "1",
-							"filename": "2"
-						}
+						"referenceName": "salesdatainput_allfiles",
+						"type": "DatasetReference"
 					}
 				],
 				"outputs": [
 					{
-						"referenceName": "Outputdataset_noparam",
-						"type": "DatasetReference"
+						"referenceName": "output1dataset",
+						"type": "DatasetReference",
+						"parameters": {
+							"outputfolder": "output"
+						}
 					}
 				]
 			}
 		],
-		"annotations": [
-			"Copy"
-		]
+		"annotations": []
 	}
 }

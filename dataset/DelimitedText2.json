@@ -1,12 +1,12 @@
 {
-	"name": "output2dataset",
+	"name": "DelimitedText2",
 	"properties": {
 		"linkedServiceName": {
-			"referenceName": "Inputblobstorage",
+			"referenceName": "GML_Blob_Storage",
 			"type": "LinkedServiceReference"
 		},
 		"parameters": {
-			"outputfolder": {
+			"filename": {
 				"type": "string"
 			}
 		},
@@ -15,6 +15,11 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobStorageLocation",
+				"fileName": {
+					"value": "@dataset().filename",
+					"type": "Expression"
+				},
+				"folderPath": "Input",
 				"container": "roopatpgcontainer"
 			},
 			"columnDelimiter": ",",
@@ -24,19 +29,19 @@
 		},
 		"schema": [
 			{
-				"name": "Name",
+				"name": "DEPARTMENT_ID",
 				"type": "String"
 			},
 			{
-				"name": "Category",
+				"name": "DEPARTMENT_NAME",
 				"type": "String"
 			},
 			{
-				"name": "Status",
+				"name": "MANAGER_ID",
 				"type": "String"
 			},
 			{
-				"name": "Error",
+				"name": "LOCATION_ID",
 				"type": "String"
 			}
 		]

@@ -1,20 +1,17 @@
 {
-	"name": "output2dataset",
+	"name": "customer_dataset",
 	"properties": {
 		"linkedServiceName": {
-			"referenceName": "Inputblobstorage",
+			"referenceName": "GML_Blob_Storage",
 			"type": "LinkedServiceReference"
-		},
-		"parameters": {
-			"outputfolder": {
-				"type": "string"
-			}
 		},
 		"annotations": [],
 		"type": "DelimitedText",
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobStorageLocation",
+				"fileName": "Customer.txt",
+				"folderPath": "Input",
 				"container": "roopatpgcontainer"
 			},
 			"columnDelimiter": ",",
@@ -28,15 +25,15 @@
 				"type": "String"
 			},
 			{
-				"name": "Category",
+				"name": " ID",
 				"type": "String"
 			},
 			{
-				"name": "Status",
+				"name": "LOC",
 				"type": "String"
 			},
 			{
-				"name": "Error",
+				"name": "SAL",
 				"type": "String"
 			}
 		]

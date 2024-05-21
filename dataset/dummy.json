@@ -1,42 +1,26 @@
 {
-	"name": "output2dataset",
+	"name": "dummy",
 	"properties": {
 		"linkedServiceName": {
-			"referenceName": "Inputblobstorage",
+			"referenceName": "GML_Blob_Storage",
 			"type": "LinkedServiceReference"
-		},
-		"parameters": {
-			"outputfolder": {
-				"type": "string"
-			}
 		},
 		"annotations": [],
 		"type": "DelimitedText",
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobStorageLocation",
+				"fileName": "Dummy.txt",
+				"folderPath": "Input",
 				"container": "roopatpgcontainer"
 			},
 			"columnDelimiter": ",",
 			"escapeChar": "\\",
-			"firstRowAsHeader": true,
+			"firstRowAsHeader": false,
 			"quoteChar": "\""
 		},
 		"schema": [
 			{
-				"name": "Name",
-				"type": "String"
-			},
-			{
-				"name": "Category",
-				"type": "String"
-			},
-			{
-				"name": "Status",
-				"type": "String"
-			},
-			{
-				"name": "Error",
 				"type": "String"
 			}
 		]
